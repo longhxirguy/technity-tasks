@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    char situation[101];  // Assuming a maximum length of 100 characters
+    scanf("%s", situation);
+
+    int consecutive_count = 1; // Initialize with 1 to count the current character
+    char current_char = situation[0];
+    int is_dangerous = 0;
+
+    // Iterate through the string starting from the second character
+    for (int i = 1; situation[i] != '\0'; i++) {
+        if (situation[i] == current_char) {
+            consecutive_count++;
+        } else {
+            consecutive_count = 1; // Reset the count for the new character
+            current_char = situation[i];
+        }
+
+        // Check if there are 7 consecutive characters
+        if (consecutive_count >= 7) {
+            is_dangerous = 1;
+            break;
+        }
+    }
+
+    if (is_dangerous) {
+        printf("YES\n");
+    } else {
+        printf("NO\n");
+    }
+
+    return 0;
+}
