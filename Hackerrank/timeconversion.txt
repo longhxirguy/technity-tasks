@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+void timeConversion(char s[]) {
+    int hh, mm, ss;
+    char ampm[3];
+
+    // Extract hours, minutes, seconds, and AM/PM from the input string
+    sscanf(s, "%02d:%02d:%02d%s", &hh, &mm, &ss, ampm);
+
+    // Adjust hours based on AM/PM
+    if (strcmp(ampm, "PM") == 0 && hh != 12) {
+        hh += 12;
+    } else if (strcmp(ampm, "AM") == 0 && hh == 12) {
+        hh = 0;
+    }
+
+    // Print the time in 24-hour format
+    printf("%02d:%02d:%02d\n", hh, mm, ss);
+}
+
+int main() {
+    char s[12];  // Assuming the input time format is hh:mm:ssAM or hh:mm:ssPM
+    scanf("%s", s);
+
+    timeConversion(s);
+
+    return 0;
+}
